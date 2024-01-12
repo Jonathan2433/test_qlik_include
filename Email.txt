@@ -1,0 +1,17 @@
+	/*  Crée des adresses E-mail pour chaque employé */
+Mail:
+Load [NumEmploye], 
+IF((ord("Prénom") >= 65 AND ord("Prénom") <= 90),chr(ord("Prénom")+32),
+IF((Left("Prénom",1)='Ä' OR Left("Prénom",1)='ä'),'a',
+IF((Left("Prénom",1)='Å' OR Left("Prénom",1)='å'),'a',
+IF((Left("Prénom",1)='Ö' OR Left("Prénom",1)='ö'),'o',Left("Prénom",1)))))&'.'&
+IF((ord("Nom") >= 65 AND ord("Nom") <= 90),chr(ord("Nom")+32),
+IF((Left("Nom",1)='Ä' OR Left("Nom",1)='ä'),'A',
+IF((Left("Nom",1)='Å' OR Left("Nom",1)='å'),'A',
+IF((Left("Nom",1)='Ö' OR Left("Nom",1)='ö'),'O',(Left("Nom",1))))))&mid("Nom",2,(len("Nom")-1))&
+'@'&
+IF(Bureau=1,'stockholm.se',
+IF(Bureau=2,'lund.se',
+IF(Bureau=3,'paris.fr',
+IF(Bureau=4,'nice.fr','France.com')))) as "e-mail"
+resident Employé;
